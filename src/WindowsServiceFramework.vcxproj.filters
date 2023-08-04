@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\statemachine">
+      <UniqueIdentifier>{a53c7685-2b1b-401b-aa9d-5e919684248c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utilities">
+      <UniqueIdentifier>{c02cf018-59ec-4f40-9f7c-7d74808fc70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{5a6ec3a5-b1a8-416d-951c-9694b28c33a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\examples">
+      <UniqueIdentifier>{61915f9f-f246-451b-832a-dd7c7268375d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\examples">
+      <UniqueIdentifier>{91bad231-f3ad-4aa9-8483-7211655d8989}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RAII.h">
+      <Filter>Header Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleService.cpp">
+      <Filter>Source Files\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="KernelDriverSvc.cpp">
+      <Filter>Source Files\examples</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="statemachine.h">
+      <Filter>Header Files\statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="service_sm.h">
+      <Filter>Header Files\statemachine</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceHandler.h">
+      <Filter>Header Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleService.h">
+      <Filter>Header Files\examples</Filter>
+    </ClInclude>
+    <ClInclude Include="KernelDriverSvc.h">
+      <Filter>Header Files\examples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
