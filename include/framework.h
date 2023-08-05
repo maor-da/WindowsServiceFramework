@@ -13,8 +13,8 @@ template <typename T>
 concept is_wstr_name = std::same_as<T, const wchar_t*>;
 
 template <class T>
-concept is_service_t = std::is_base_of_v<Service, T> && requires { T::service_name; } &&
-					   std::same_as<decltype(T::service_name), const wchar_t*>;
+concept is_service_t = std::is_base_of_v<Service, T>&& requires { T::service_name; }&&
+std::same_as<decltype(T::service_name), const wchar_t*>;
 
 class SCMDispatcher
 {
@@ -52,7 +52,7 @@ public:
 	bool run()
 	{
 		if (m_ServicesMap.contains(T::service_name)) {
-			return m_ServicesMap[T::service_name]->run();
+			return m_ServicesMap[T::service_name]->Service::run(); // Run the base
 		}
 		return false;
 	}

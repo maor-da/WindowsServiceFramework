@@ -70,6 +70,13 @@ SC_HANDLE Service::get_handle()
 	return m_Handle;
 }
 
+void Service::idle()
+{
+	// TODO: consider random wake
+	WaitForSingleObject(cfg.stop_event, INFINITE);
+	Service::stop();
+}
+
 bool Service::start()
 {
 	THREAD_LOCAL_GAURD(true);
@@ -144,18 +151,20 @@ bool Service::resume()
 
 bool Service::run()
 {
+	THREAD_LOCAL_GAURD(true);
+
 	if (!is_installed()) {
 		return false;
 	}
 
 	switch (s.get_state()) {
 		case decltype(s)::state_t::installed:
-			return Service::start();
+			return Service::start() && run();
 		case decltype(s)::state_t::paused:
-			return Service::resume();
+			return Service::resume() && run();
 
 		default:
-			return false;
+			break;
 	}
 }
 
@@ -172,12 +181,12 @@ std::filesystem::path GetServicePath()
 
 bool Service::install()
 {
+	if (is_installed()) {
+		return true;
+	}
+
 	try {
 		auto t = s.transit(decltype(s)::state_t::installed);
-		if (is_installed()) {
-			t.commit();
-			return true;
-		}
 
 		do {
 			SC_HANDLE scm = SCMDispatcher::instance()->scm_handle();
@@ -242,11 +251,12 @@ bool Service::install()
 
 bool Service::uninstall()
 {
+	if (!is_installed()) {
+		return true;
+	}
+
 	try {
 		auto t = s.transit(decltype(s)::state_t::uninstalled);
-		if (!is_installed()) {
-			return true;
-		}
 
 		if (DeleteService(m_Handle)) {
 			t.commit();
@@ -283,8 +293,13 @@ void __stdcall Service::main(DWORD argc, LPWSTR* argv)
 	}
 
 	// at this point we registered to the SCM with handler and created a stop event
+	std::thread wait_for_stop(&Service::idle, this);
 
 	Service::run();
+
+	if (wait_for_stop.joinable()) {
+		wait_for_stop.join();
+	}
 }
 
 void __stdcall Service::handler(DWORD control)

@@ -33,12 +33,12 @@ public:
 		} configuration;
 	};
 
-	bool run();
+	virtual bool run();
 	virtual bool stop();
 
 protected:	// access by derived
 	DWORD acceptedControls = 0;
-	config cfg{0};
+	config cfg{ 0 };
 	ServiceStateMachine s;
 
 private:
@@ -49,11 +49,15 @@ private:
 	void update_status(DWORD state, DWORD exitCode, DWORD waitHint);
 	bool is_installed();
 	SC_HANDLE get_handle();
+	void idle();
 
 	// derived can override without calling it directly
+	// base will call it
 	virtual bool start();
 	virtual bool pause();
 	virtual bool resume();
+
+	// overriding this will not called through the base
 	virtual bool install();
 	virtual bool uninstall();
 	virtual void __stdcall main(DWORD argc, LPWSTR* argv);
