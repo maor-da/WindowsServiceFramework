@@ -295,7 +295,10 @@ void __stdcall Service::main(DWORD argc, LPWSTR* argv)
 	// at this point we registered to the SCM with handler and created a stop event
 	std::thread wait_for_stop(&Service::idle, this);
 
-	Service::run();
+	if (!Service::run()) {
+		// Stop the service
+		SetEvent(cfg.stop_event);
+	}
 
 	if (wait_for_stop.joinable()) {
 		wait_for_stop.join();
