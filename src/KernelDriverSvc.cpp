@@ -1,6 +1,5 @@
 #include "KernelDriverSvc.h"
 
-
 const wchar_t* KernelDriverSvc::service_name = L"simple_driver";
 
 void __stdcall KernelDriverSvceMain(DWORD argc, LPWSTR* argv)
@@ -23,7 +22,7 @@ KernelDriverSvc::KernelDriverSvc()
 	cfg.configuration.dwStartType	  = SERVICE_DEMAND_START;
 	cfg.configuration.dwErrorControl  = SERVICE_ERROR_NORMAL;
 
-	acceptedControls				  = SERVICE_ACCEPT_STOP; /* | SERVICE_ACCEPT_PAUSE_CONTINUE |
-														   SERVICE_ACCEPT_POWEREVENT | SERVICE_ACCEPT_SESSIONCHANGE |
-														   SERVICE_ACCEPT_TIMECHANGE*/
+	cfg.accepted_controls			  = SERVICE_ACCEPT_STOP; /* | SERVICE_ACCEPT_PAUSE_CONTINUE |
+													   SERVICE_ACCEPT_POWEREVENT | SERVICE_ACCEPT_SESSIONCHANGE |
+													   SERVICE_ACCEPT_TIMECHANGE*/
 }

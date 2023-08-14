@@ -14,7 +14,7 @@ void Service::update_status(DWORD state, DWORD exitCode, DWORD waitHint)
 	if (state == SERVICE_START_PENDING) {
 		cfg.status.dwControlsAccepted = 0;	// disable controls
 	} else {
-		cfg.status.dwControlsAccepted = acceptedControls;
+		cfg.status.dwControlsAccepted = cfg.accepted_controls;
 	}
 
 	if ((state == SERVICE_RUNNING) || (state == SERVICE_STOPPED)) {

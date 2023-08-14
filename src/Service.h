@@ -17,6 +17,7 @@ public:
 		SERVICE_STATUS status;
 		SERVICE_STATUS_HANDLE status_handle;
 		HANDLE stop_event;
+		DWORD accepted_controls;
 		struct {
 			LPCWSTR lpServiceName;
 			LPCWSTR lpDisplayName;
@@ -37,8 +38,7 @@ public:
 	virtual bool stop();
 
 protected:	// access by derived
-	DWORD acceptedControls = 0;
-	config cfg{ 0 };
+	config cfg{0};
 	ServiceStateMachine s;
 
 private:
