@@ -58,7 +58,7 @@ private:
 	virtual bool resume();
 
 	// overriding this will not called through the base
-	virtual bool install();
+	virtual bool install(); // TODO: Move to overriden section
 	virtual bool uninstall();
 	virtual void __stdcall main(DWORD argc, LPWSTR* argv);
 	virtual void __stdcall handler(DWORD control);
