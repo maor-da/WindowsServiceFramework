@@ -53,7 +53,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="statemachine.h">
+    <ClInclude Include="oldstatemachine.h">
       <Filter>Header Files\statemachine</Filter>
     </ClInclude>
     <ClInclude Include="service_sm.h">
